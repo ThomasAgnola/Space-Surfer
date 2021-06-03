@@ -2034,7 +2034,7 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30
-  m_Mesh: {fileID: 2526353987496120558, guid: ba8ad55c52432c9458973a60328b3451, type: 3}
+  m_Mesh: {fileID: 2526353987496120558, guid: 72c2f7f7cd8bc78408b92cb5ad5175f1, type: 3}
 --- !u!54 &3309466176486184364
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2712,7 +2712,7 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30
-  m_Mesh: {fileID: 1130507940046169960, guid: ba8ad55c52432c9458973a60328b3451, type: 3}
+  m_Mesh: {fileID: 1130507940046169960, guid: 72c2f7f7cd8bc78408b92cb5ad5175f1, type: 3}
 --- !u!54 &4617221249204607049
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5085,7 +5085,7 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30
-  m_Mesh: {fileID: -3357421399184165210, guid: ba8ad55c52432c9458973a60328b3451, type: 3}
+  m_Mesh: {fileID: -3357421399184165210, guid: 72c2f7f7cd8bc78408b92cb5ad5175f1, type: 3}
 --- !u!54 &6881363150769983686
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6667,7 +6667,7 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30
-  m_Mesh: {fileID: 5438381515795125274, guid: ba8ad55c52432c9458973a60328b3451, type: 3}
+  m_Mesh: {fileID: 5438381515795125274, guid: 72c2f7f7cd8bc78408b92cb5ad5175f1, type: 3}
 --- !u!54 &2458097674354526037
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9944,7 +9944,7 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30
-  m_Mesh: {fileID: 1132383218088940054, guid: ba8ad55c52432c9458973a60328b3451, type: 3}
+  m_Mesh: {fileID: 1132383218088940054, guid: 72c2f7f7cd8bc78408b92cb5ad5175f1, type: 3}
 --- !u!54 &430979951902083136
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10622,7 +10622,7 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30
-  m_Mesh: {fileID: 7358779067848312383, guid: ba8ad55c52432c9458973a60328b3451, type: 3}
+  m_Mesh: {fileID: 7358779067848312383, guid: 72c2f7f7cd8bc78408b92cb5ad5175f1, type: 3}
 --- !u!54 &2310711330545308029
 Rigidbody:
   m_ObjectHideFlags: 0
