@@ -5,7 +5,7 @@ using UnityEngine;
 public class LaserShoot : MonoBehaviour
 {
     public GameObject Projectil;
-    public int force = 10;
+    public int force = 30;
     public float durationLaser = 5;
 
     // Start is called before the first frame update
@@ -26,4 +26,5 @@ public class LaserShoot : MonoBehaviour
             Destroy(Laser, durationLaser);
         }
     }
+    
 }
