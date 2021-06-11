@@ -21,6 +21,9 @@ public class GameManager : MonoBehaviour, IEventHandler
     [SerializeField] float m_CountDownStartValue;
     float m_CountDown;
 
+    [SerializeField] GameObject[] asteroids;
+    GameObject[] m_Asteroids;
+
     public void SubscribeEvents()
     {
         EventManager.Instance.AddListener<PlayButtonClickedEvent>(PlayButtonClicked);
@@ -158,6 +161,16 @@ public class GameManager : MonoBehaviour, IEventHandler
             {
                 GameOver();
             }
+
+            if(asteroids != null)
+            {
+                m_Asteroids = asteroids;
+                for (int i =0; i <= m_Asteroids.Length; i++)
+                            {
+                                m_Asteroids[i].transform.position = transform.position - transform.forward;
+                            }
+            }
+            
         }
     }
 }
