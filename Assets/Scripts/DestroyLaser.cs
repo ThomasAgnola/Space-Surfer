@@ -5,13 +5,13 @@ using UnityEngine;
 public class DestroyLaser : MonoBehaviour
 {
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collider)
     {
 
-        //foreach (ContactPoint contact in collision.contacts)
-        //{
-            Destroy(collision.gameObject, 0);
-        //}
-
+        /*if(collider.name == "RockFracture6")
+        {
+            Destroy(gameObject, 0);
+        }
+        */
     }
 }
