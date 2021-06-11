@@ -165,7 +165,7 @@ public class GameManager : MonoBehaviour, IEventHandler
             if(asteroids != null)
             {
                 m_Asteroids = asteroids;
-                for (int i =0; i <= m_Asteroids.Length; i++)
+                for (int i =0; i < m_Asteroids.Length; i++)
                             {
                                 m_Asteroids[i].transform.position = transform.position - transform.forward;
                             }
