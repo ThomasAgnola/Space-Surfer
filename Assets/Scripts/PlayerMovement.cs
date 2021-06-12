@@ -6,17 +6,15 @@ public class PlayerMovement : MonoBehaviour
 {
     public float strafeSpeed = 7.5f, hoverSpeed = 5f, forwardspeed = 25f;
     private float activeStrafeSpeed, activeHoverSpeed, activeForwardSpeed;
-    public float speed = 1.0f;
-    Transform target = null;
+    [SerializeField] private float speed = 1;
     Transform Ship_straight;
     private bool IsLeft=false, IsRight=false, IsCenter=true, IsMoving=false;
 
     [SerializeField] GameObject Left_Ship_Position;
-    private Transform ShipLeft;
     [SerializeField] GameObject Base_Ship_Position;
-    private Transform ShipBase;
     [SerializeField] GameObject Right_Ship_Position;
-    private Transform ShipRight;
+    private Vector3 target;
+    private float distance;
 
     // Start is called before the first frame update
     void Start()
@@ -62,10 +60,10 @@ public class PlayerMovement : MonoBehaviour
                 Movement();
             }
         }
-        /*if (IsMoving)
+        if (IsMoving)
         {
             Movement();
-        }*/
+        }
     }
 
     void Movement()
@@ -73,35 +71,43 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("Déplacement");
         if(IsRight)
         {
-            target = Right_Ship_Position.transform;
+            target = Right_Ship_Position.transform.localPosition; // should return gameobject.x pos but return the player.x pos
             IsMoving = true;
             Ship_straight = transform;
             transform.rotation.Set(transform.rotation.x, transform.rotation.y, transform.rotation.z + 30, transform.rotation.w);
         }
         if (IsLeft)
         {
-            target = Left_Ship_Position.transform;
+            target = Left_Ship_Position.transform.localPosition; //same
             IsMoving = true;
             Ship_straight = transform;
             transform.rotation.Set(transform.rotation.x, transform.rotation.y, transform.rotation.z - 30, transform.rotation.w);
         }
         if (IsCenter)
         {
-            target = Base_Ship_Position.transform;
+            target = Base_Ship_Position.transform.localPosition; //same
             IsMoving = true;
         }
         float step = speed * Time.deltaTime; // calculate distance to move
-        transform.position = Vector3.MoveTowards(transform.position, target.position, step);
+        transform.localPosition = Vector3.MoveTowards(transform.localPosition, target, step);
+        CheckDistance();
 
         // Check if the position of the cube and sphere are approximately equal.
-        if (Vector3.Distance(transform.position, target.position) <= 1f)
+        if (distance <= 0.01f)
         {
             // Swap the position of the cylinder.
-            Debug.Log("Distance : " + Vector3.Distance(transform.position, target.position)+ "\n");
-            target.position *= -1.0f;
+            target *= -1.0f;
             transform.rotation.Set(Ship_straight.rotation.x, Ship_straight.rotation.y, Ship_straight.rotation.z, Ship_straight.rotation.w);
             IsMoving = false;
-            target = null;
+            target = transform.localPosition;
         }
+    }
+
+    void CheckDistance()
+    {
+        distance = Vector3.Distance(transform.localPosition, target);
+        //float ma_distance = transform.localPosition.x - target.x;
+        Debug.Log("ship x : " + transform.localPosition.x + " target x : " + target.x);
+        //Debug.Log("Distance : " + distance + " Ma distance : "+ma_distance);
     }
 }
