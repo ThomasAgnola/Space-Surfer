@@ -31,38 +31,43 @@ public class PlayerMovement : MonoBehaviour
         transform.position += (transform.forward * activeForwardSpeed * Time.deltaTime);
         transform.position += (transform.right * activeStrafeSpeed * Time.deltaTime) + (transform.up * activeHoverSpeed * Time.deltaTime);
         */
-        if (Input.GetAxisRaw("Horizontal") > 0) // Vers la droite
+
+        if (IsMoving)
+        {
+            Movement();
+        }
+        else if (Input.GetAxisRaw("Horizontal") > 0) // Vers la droite
         {
             //Debug.Log("Horizontal > 0");
             if (IsCenter)
             {
                 IsRight = true;
+                IsCenter = false;
                 Movement();
                 Debug.Log("Déplacement à droite init");
             }
             if (IsLeft)
             {
                 IsCenter = true;
+                IsLeft = false;
                 Movement();
             }
         }
-        if (Input.GetAxisRaw("Horizontal") < 0) // Vers la gauche
+        else if (Input.GetAxisRaw("Horizontal") < 0) // Vers la gauche
         {
             if (IsCenter)
             {
                 IsLeft = true;
+                IsCenter = false;
                 Movement();
                 Debug.Log("Déplacement à gauche init");
             }
             if(IsRight)
             {
                 IsCenter = true;
+                IsRight = false;
                 Movement();
             }
-        }
-        if (IsMoving)
-        {
-            Movement();
         }
     }
 
@@ -92,7 +97,7 @@ public class PlayerMovement : MonoBehaviour
         transform.localPosition = Vector3.MoveTowards(transform.localPosition, target, step);
         CheckDistance();
 
-        // Check if the position of the cube and sphere are approximately equal.
+        // Check if the position is approximately equal to the target.
         if (distance <= 0.01f)
         {
             // Swap the position of the cylinder.
