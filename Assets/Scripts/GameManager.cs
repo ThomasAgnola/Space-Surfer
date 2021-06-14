@@ -81,11 +81,7 @@ public class GameManager : MonoBehaviour, IEventHandler
     {
         m_Score += scoreIncrement;
         SetStatistics(m_Score, m_CountDown);
-
-        if(m_Score >= m_ScoreToVictory)
-        {
-            Victory();
-        }
+        
     }
 
     #region Events callbacks

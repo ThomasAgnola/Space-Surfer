@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SDD.Events;
 
 public class Fracture : MonoBehaviour
 {
@@ -15,8 +16,18 @@ public class Fracture : MonoBehaviour
             Destroy(collision.gameObject);
             asteroid.AddComponent<SphereCollider>();
             Destroy(asteroid.GetComponent<SphereCollider>(), 0.5f);
-            Destroy(asteroid, 5);
+            Destroy(asteroid, 6);
             
+        }
+        else if(collision.gameObject.CompareTag("spaceship"))
+        {
+            GameObject asteroid = Instantiate(fractured, transform.position, transform.rotation);
+            Destroy(gameObject);
+            asteroid.AddComponent<SphereCollider>();
+            Destroy(asteroid.GetComponent<SphereCollider>(), 0.5f);
+            Destroy(asteroid, 6);
+            EventManager.Instance.Raise(new GameOverEvent());
+
         }
         
 
