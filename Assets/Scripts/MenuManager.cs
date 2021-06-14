@@ -50,12 +50,10 @@ public class MenuManager : MonoBehaviour, IEventHandler
     #region Events callbacks
     void GameMenu(GameMenuEvent e)
     {
-        Debug.Log("event GameMenu received by + " + name);
         DisplayPanel(m_MainMenuPanel);
     }
     void GamePlay(GamePlayEvent e)
     {
-        Debug.Log("event GamePlay received by + " + name);
         DisplayPanel(null);
     }
     void GameVictory(GameVictoryEvent e)

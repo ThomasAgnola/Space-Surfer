@@ -31,7 +31,6 @@ public class LevelManager : MonoBehaviour, IEventHandler
     void GamePlay(GamePlayEvent e)
     {
         Init();
-        Debug.Log("event GamePlay received by + " + name);
     }
     #endregion
 

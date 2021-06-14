@@ -15,6 +15,9 @@ public class GameManager : MonoBehaviour, IEventHandler
 
     public bool IsPlaying { get { return m_State == GAMESTATE.play; } }
     public bool IsPaused { get { return m_State == GAMESTATE.pause; } }
+    private bool IsMenu { get { return m_State == GAMESTATE.menu; } }
+    private bool IsHighScore { get { return m_State == GAMESTATE.highscore; } }
+    private bool IsCredit { get { return m_State == GAMESTATE.credit; } }
     private int highScore=0;
 
     [SerializeField] int m_ScoreToVictory;
@@ -191,9 +194,46 @@ public class GameManager : MonoBehaviour, IEventHandler
             }
             
         }
-        if (Input.GetKeyDown(KeyCode.Escape)) //Détection du menu pause
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton7)) 
         {
             EventManager.Instance.Raise(new EscapeButtonClickedEvent());
+        }
+        else if (IsMenu)
+        {
+            if (Input.GetKeyDown(KeyCode.JoystickButton0))
+            {
+                EventManager.Instance.Raise(new PlayButtonClickedEvent());
+            }
+            else if (Input.GetKeyDown(KeyCode.JoystickButton2))
+            {
+                EventManager.Instance.Raise(new HighScoreButtonClickedEvent());
+            }
+
+        }
+        else if(IsPaused) //Détection du menu pause
+        {
+            if (Input.GetKeyDown(KeyCode.JoystickButton1))
+            {
+                EventManager.Instance.Raise(new MainMenuButtonClickedEvent());
+            }
+            else if (Input.GetKeyDown(KeyCode.JoystickButton0))
+            {
+                EventManager.Instance.Raise(new ResumeButtonClickedEvent());
+            }
+        }
+        else if (IsHighScore)
+        {
+            if (Input.GetKeyDown(KeyCode.JoystickButton1))
+            {
+                EventManager.Instance.Raise(new MainMenuButtonClickedEvent());
+            }
+        }
+        else if (IsCredit)
+        {
+            if (Input.GetKeyDown(KeyCode.JoystickButton1))
+            {
+                EventManager.Instance.Raise(new MainMenuButtonClickedEvent());
+            }
         }
     }
 }
