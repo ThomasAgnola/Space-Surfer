@@ -67,7 +67,7 @@ public class LevelHasBeenInitializedEvent : SDD.Events.Event
 #endregion
 
 #region Ball events
-public class BallHitSomethingEvent : SDD.Events.Event
+public class AsteroidExplosionEvent : SDD.Events.Event
 {
 	public GameObject eHitGO;
 }

@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour, IEventHandler
 
     public bool IsPlaying { get { return m_State == GAMESTATE.play; } }
     public bool IsPaused { get { return m_State == GAMESTATE.pause; } }
+    private int highScore=0;
 
     [SerializeField] int m_ScoreToVictory;
     int m_Score;
@@ -28,17 +29,18 @@ public class GameManager : MonoBehaviour, IEventHandler
     public void SubscribeEvents()
     {
         EventManager.Instance.AddListener<PlayButtonClickedEvent>(PlayButtonClicked);
-        EventManager.Instance.AddListener<BallHitSomethingEvent>(BallHitSomething);
+        EventManager.Instance.AddListener<AsteroidExplosionEvent>(AsteroidExplosion);
         EventManager.Instance.AddListener<MainMenuButtonClickedEvent>(MainMenuButtonClicked);
         EventManager.Instance.AddListener<HighScoreButtonClickedEvent>(HighScoreButtonClicked);
         EventManager.Instance.AddListener<EscapeButtonClickedEvent>(EscapeButtonClicked);
         EventManager.Instance.AddListener<CreditButtonClickedEvent>(CreditButtonClicked);
+
     }
 
     public void UnsubscribeEvents()
     {
         EventManager.Instance.RemoveListener<PlayButtonClickedEvent>(PlayButtonClicked); 
-        EventManager.Instance.RemoveListener<BallHitSomethingEvent>(BallHitSomething);
+        EventManager.Instance.RemoveListener<AsteroidExplosionEvent>(AsteroidExplosion);
         EventManager.Instance.RemoveListener<MainMenuButtonClickedEvent>(MainMenuButtonClicked);
         EventManager.Instance.RemoveListener<HighScoreButtonClickedEvent>(HighScoreButtonClicked);
         EventManager.Instance.RemoveListener<EscapeButtonClickedEvent>(EscapeButtonClicked);
@@ -82,7 +84,16 @@ public class GameManager : MonoBehaviour, IEventHandler
     {
         m_Score += scoreIncrement;
         SetStatistics(m_Score, m_CountDown);
-        
+
+        if (m_Score >= m_ScoreToVictory)
+        {
+            Victory();
+        }
+
+        if(m_Score>highScore)
+        {
+            PlayerPrefs.SetInt("highScore", m_Score);
+        }
     }
 
     #region Events callbacks
@@ -130,15 +141,18 @@ public class GameManager : MonoBehaviour, IEventHandler
         m_State = GAMESTATE.credit;
         EventManager.Instance.Raise(new GameCreditEvent());
     }
-    void BallHitSomething(BallHitSomethingEvent e)
+    void AsteroidExplosion(AsteroidExplosionEvent e)
     {
         if (!IsPlaying) return;
+
         
-        IScore score = e.eHitGO.GetComponentInChildren<IScore>();
-        if(score != null)
-        {
-            IncrementScore(score.Score);
-        }
+        IncrementScore(5);
+        
+    }
+
+    private static GameObject GetEHitGO(AsteroidExplosionEvent e)
+    {
+        return e.eHitGO;
     }
     #endregion
 
@@ -161,8 +175,14 @@ public class GameManager : MonoBehaviour, IEventHandler
 
         m_State = GAMESTATE.menu;
         EventManager.Instance.Raise(new GameMenuEvent());
+        if(PlayerPrefs.HasKey("highScore"))
+        {
+            highScore = PlayerPrefs.GetInt("highScore");
+        }
 
         yield break;
+        
+
     }
 
     // Update is called once per frame
