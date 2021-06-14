@@ -20,9 +20,10 @@ public class HighScoreManager : MonoBehaviour, IEventHandler
 
     void HighScore()
     {
-        //Debug.Log("contenu de highscore : " + GameManager.Instance.highScore.ToString());
-        HighScore_menu.text = GameManager.Instance.highScore.ToString();
-        //Debug.Log("placement de highscore dans zone de text");
+        if (PlayerPrefs.HasKey("highScore"))
+        {
+            HighScore_menu.text = PlayerPrefs.GetInt("highScore").ToString();
+        }
     }
 
     private void OnEnable()
