@@ -113,7 +113,11 @@ public class PlayerMovement : MonoBehaviour, IEventHandler
     private void FixedUpdate()
     {
         {
-            if (IsMoving)
+            if (GameManager.Instance.IsPlaying == false)
+            {
+                return;
+            }
+            else if (IsMoving)
             {
                 Movement();
             }

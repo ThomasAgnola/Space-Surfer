@@ -37,6 +37,7 @@ public class GenerateAsteroid : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!GameManager.Instance.IsPlaying) return;
         timer += Time.deltaTime;
         if(timer >= spawnTime)
         {

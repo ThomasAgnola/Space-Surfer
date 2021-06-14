@@ -19,14 +19,23 @@ public class AsteroidController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(transform.position.z < removePositionZ)
+        if (!GameManager.Instance.IsPlaying)
         {
-            Destroy(gameObject);
+            Vector3 movementVector = new Vector3(0f, 0f, 0f);
+            rb.velocity = movementVector;
+            return;
         }
-        Vector3 movementVector = new Vector3(0f, 0f, -moveSpeed * Time.deltaTime);
-        rb.velocity = movementVector;
+        else
+        {
+            if (transform.position.z < removePositionZ)
+            {
+                Destroy(gameObject);
+            }
+            Vector3 movementVector = new Vector3(0f, 0f, -moveSpeed * Time.deltaTime);
+            rb.velocity = movementVector;
 
-        transform.Rotate(randomRotation * Time.deltaTime);
+            transform.Rotate(randomRotation * Time.deltaTime);
+        }
     }
 
     public void DestroyAsteroid()

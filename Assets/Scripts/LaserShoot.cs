@@ -17,7 +17,8 @@ public class LaserShoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.V))
+        if (!GameManager.Instance.IsPlaying) return;
+        else if (Input.GetKeyDown(KeyCode.V))
         {
             //GameObject Laser = Instantiate(Projectil, transform.position, Quaternion.identity);
             GameObject Laser = Instantiate(Projectil, transform.position, transform.rotation);

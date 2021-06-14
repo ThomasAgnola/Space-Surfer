@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour, IEventHandler
     private GAMESTATE m_State;
 
     public bool IsPlaying { get { return m_State == GAMESTATE.play; } }
+    public bool IsPaused { get { return m_State == GAMESTATE.pause; } }
 
     [SerializeField] int m_ScoreToVictory;
     int m_Score;
@@ -119,13 +120,13 @@ public class GameManager : MonoBehaviour, IEventHandler
         {
             m_State = GAMESTATE.pause;
             EventManager.Instance.Raise(new GamePauseEvent());
-            Debug.Log("Pause menu asked");
+            //Debug.Log("Pause menu asked");
         }
         else if (m_State == GAMESTATE.pause)
         {
             m_State = GAMESTATE.play;
             EventManager.Instance.Raise(new GameResumeEvent());
-            Debug.Log("resume asked");
+            //Debug.Log("resume asked");
         }
     }
     void CreditButtonClicked(CreditButtonClickedEvent e)
@@ -193,7 +194,7 @@ public class GameManager : MonoBehaviour, IEventHandler
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             EventManager.Instance.Raise(new EscapeButtonClickedEvent());
-            Debug.Log("Escape Button received");
+            //Debug.Log("Escape Button received");
         }
 
     }
