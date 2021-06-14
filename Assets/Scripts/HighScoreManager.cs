@@ -24,6 +24,10 @@ public class HighScoreManager : MonoBehaviour, IEventHandler
         {
             HighScore_menu.text = PlayerPrefs.GetInt("highScore").ToString();
         }
+        else
+        {
+            HighScore_menu.text = "No HighScore yet";
+        }
     }
 
     private void OnEnable()
