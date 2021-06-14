@@ -13,11 +13,11 @@ public class Fracture : MonoBehaviour
         {   
             GameObject asteroid=Instantiate(fractured, transform.position, transform.rotation); //Spawn in the broken version
             Destroy(gameObject); //Destroy the object to stop it getting in the way
-            EventManager.Instance.Raise(new AsteroidExplosionEvent() { eHitGO = collision.gameObject });
-            Destroy(collision.gameObject);
-            asteroid.AddComponent<SphereCollider>();
-            Destroy(asteroid.GetComponent<SphereCollider>(), 0.5f);
-            Destroy(asteroid, 6);
+            EventManager.Instance.Raise(new AsteroidExplosionEvent()); //Increment Score of the party
+            Destroy(collision.gameObject); //Destroy the laser
+            asteroid.AddComponent<SphereCollider>(); //add a spherecollider to trigger an explosion
+            Destroy(asteroid.GetComponent<SphereCollider>(), 0.5f); //destroy the spherecollider just after
+            Destroy(asteroid, 6); //destroy the asteroid after 6 sec
             
             
         }

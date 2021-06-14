@@ -5,8 +5,6 @@ using SDD.Events;
 
 public class PlayerMovement : MonoBehaviour, IEventHandler
 {
-    public float strafeSpeed = 7.5f, hoverSpeed = 5f, forwardspeed = 25f;
-    private float activeStrafeSpeed, activeHoverSpeed, activeForwardSpeed;
     [SerializeField] private float speed = 1;
     Transform Ship_straight;
     private bool IsLeft = false, IsRight = false, IsCenter = true, IsMoving = false;

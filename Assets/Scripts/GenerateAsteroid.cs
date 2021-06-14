@@ -20,13 +20,9 @@ public class GenerateAsteroid : MonoBehaviour
     #endregion
 
     public GameObject[] asteroidPrefab;
-    public float asteroidSpawnDistance = 50f;
 
     private float spawnTime = 4f;
     private float timer = 0f;
-
-    [HideInInspector]
-    public float minX = -2.6f, maxX = 2.6f, minY = 0f, maxY = 2.6f;
 
     // Start is called before the first frame update
     void Start()
@@ -49,13 +45,11 @@ public class GenerateAsteroid : MonoBehaviour
 
     private void SpawnNewAsteroid()
     {
-        
-
-        Vector3 spawPos = new Vector3(transform.position.x, transform.position.y, asteroidSpawnDistance);
-        Vector3 spawPos1 = new Vector3(transform.position.x - 1.5f, transform.position.y, asteroidSpawnDistance);
-        Vector3 spawPos2 = new Vector3(transform.position.x  + 1.5f, transform.position.y, asteroidSpawnDistance);
-        Instantiate(asteroidPrefab[Random.Range(0, asteroidPrefab.Length)], spawPos, Quaternion.identity);
-        Instantiate(asteroidPrefab[Random.Range(0, asteroidPrefab.Length)], spawPos1, Quaternion.identity);
-        Instantiate(asteroidPrefab[Random.Range(0, asteroidPrefab.Length)], spawPos2, Quaternion.identity);
+    Vector3 spawPos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+    Vector3 spawPos1 = new Vector3(transform.position.x - 1.5f, transform.position.y, transform.position.z);
+    Vector3 spawPos2 = new Vector3(transform.position.x  + 1.5f, transform.position.y, transform.position.z);
+    Instantiate(asteroidPrefab[Random.Range(0, asteroidPrefab.Length)], spawPos, Quaternion.identity);
+    Instantiate(asteroidPrefab[Random.Range(0, asteroidPrefab.Length)], spawPos1, Quaternion.identity);
+    Instantiate(asteroidPrefab[Random.Range(0, asteroidPrefab.Length)], spawPos2, Quaternion.identity);
     }
 }

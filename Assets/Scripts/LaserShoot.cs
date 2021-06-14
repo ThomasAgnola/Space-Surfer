@@ -18,9 +18,8 @@ public class LaserShoot : MonoBehaviour
     void Update()
     {
         if (!GameManager.Instance.IsPlaying) return;
-        else if (Input.GetKeyDown(KeyCode.V))
+        else if (Input.GetKeyDown(KeyCode.Space))
         {
-            //GameObject Laser = Instantiate(Projectil, transform.position, Quaternion.identity);
             GameObject Laser = Instantiate(Projectil, transform.position, transform.rotation);
             Laser.GetComponent<Rigidbody>().velocity = Vector3.forward * force;
             laserSound.Play();
