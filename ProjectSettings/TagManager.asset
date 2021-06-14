@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Rock6
+  - laser
+  - spaceship
   layers:
   - Default
   - TransparentFX
