@@ -7,7 +7,7 @@ public class LaserShoot : MonoBehaviour
     public GameObject Projectil;
     public int force = 30;
     public float durationLaser = 5;
-
+    public AudioSource laserSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +22,7 @@ public class LaserShoot : MonoBehaviour
             //GameObject Laser = Instantiate(Projectil, transform.position, Quaternion.identity);
             GameObject Laser = Instantiate(Projectil, transform.position, transform.rotation);
             Laser.GetComponent<Rigidbody>().velocity = Vector3.forward * force;
-
+            laserSound.Play();
             Destroy(Laser, durationLaser);
         }
     }

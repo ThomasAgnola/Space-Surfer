@@ -10,9 +10,13 @@ public class Fracture : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {   if(collision.gameObject.CompareTag("laser"))
         {   
-            Instantiate(fractured, transform.position, transform.rotation); //Spawn in the broken version
+            GameObject asteroid=Instantiate(fractured, transform.position, transform.rotation); //Spawn in the broken version
             Destroy(gameObject); //Destroy the object to stop it getting in the way
             Destroy(collision.gameObject);
+            asteroid.AddComponent<SphereCollider>();
+            Destroy(asteroid.GetComponent<SphereCollider>(), 0.5f);
+            Destroy(asteroid, 5);
+            
         }
         
 
