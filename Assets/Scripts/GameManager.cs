@@ -99,9 +99,7 @@ public class GameManager : MonoBehaviour, IEventHandler
     #region Events callbacks
     void PlayButtonClicked(PlayButtonClickedEvent e)
     {
-        //Debug.Log("event PlayButtonClicked received by + " + name);
         m_State = GAMESTATE.play;
-
         InitGame();
         EventManager.Instance.Raise(new GamePlayEvent());
     }
@@ -127,13 +125,11 @@ public class GameManager : MonoBehaviour, IEventHandler
         {
             m_State = GAMESTATE.pause;
             EventManager.Instance.Raise(new GamePauseEvent());
-            //Debug.Log("Pause menu asked");
         }
         else if (m_State == GAMESTATE.pause)
         {
             m_State = GAMESTATE.play;
             EventManager.Instance.Raise(new GameResumeEvent());
-            //Debug.Log("resume asked");
         }
     }
     void CreditButtonClicked(CreditButtonClickedEvent e)
@@ -144,15 +140,7 @@ public class GameManager : MonoBehaviour, IEventHandler
     void AsteroidExplosion(AsteroidExplosionEvent e)
     {
         if (!IsPlaying) return;
-
-        
         IncrementScore(5);
-        
-    }
-
-    private static GameObject GetEHitGO(AsteroidExplosionEvent e)
-    {
-        return e.eHitGO;
     }
     #endregion
 
@@ -171,18 +159,14 @@ public class GameManager : MonoBehaviour, IEventHandler
     // Start is called before the first frame update
     IEnumerator Start()
     {
-        //yield return new WaitForSeconds(4);
-
         m_State = GAMESTATE.menu;
         EventManager.Instance.Raise(new GameMenuEvent());
-        if(PlayerPrefs.HasKey("highScore"))
+        if(PlayerPrefs.HasKey("highScore")) //récupération du highscore d'une ancienne partie
         {
             highScore = PlayerPrefs.GetInt("highScore");
         }
 
         yield break;
-        
-
     }
 
     // Update is called once per frame
@@ -201,17 +185,15 @@ public class GameManager : MonoBehaviour, IEventHandler
             {
                 m_Asteroids = asteroids;
                 for (int i =0; i < m_Asteroids.Length; i++)
-                            {
-                                m_Asteroids[i].transform.position = transform.position - transform.forward;
-                            }
+                {
+                    m_Asteroids[i].transform.position = transform.position - transform.forward;
+                }
             }
             
         }
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape)) //Détection du menu pause
         {
             EventManager.Instance.Raise(new EscapeButtonClickedEvent());
-            //Debug.Log("Escape Button received");
         }
-
     }
 }

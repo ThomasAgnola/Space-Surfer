@@ -20,7 +20,7 @@ public class HighScoreManager : MonoBehaviour, IEventHandler
 
     void HighScore()
     {
-        if (PlayerPrefs.HasKey("highScore"))
+        if (PlayerPrefs.HasKey("highScore")) //test si highscore existe
         {
             HighScore_menu.text = PlayerPrefs.GetInt("highScore").ToString();
         }
@@ -42,7 +42,6 @@ public class HighScoreManager : MonoBehaviour, IEventHandler
 
     void HighScoreEvent(GameHighScoreEvent e)
     {
-        //Debug.Log("Arrivez dans highscore button");
         HighScore(); 
     }
 

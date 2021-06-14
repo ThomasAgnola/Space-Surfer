@@ -7,7 +7,6 @@ public class AsteroidController : MonoBehaviour
     public float moveSpeed = 20f;
     private Rigidbody rb;
     private Vector3 randomRotation;
-    private float removePositionZ;
 
     // Start is called before the first frame update
     void Start()
@@ -27,13 +26,8 @@ public class AsteroidController : MonoBehaviour
         }
         else
         {
-            if (transform.position.z < removePositionZ)
-            {
-                Destroy(gameObject);
-            }
             Vector3 movementVector = new Vector3(0f, 0f, -moveSpeed * Time.deltaTime);
             rb.velocity = movementVector;
-
             transform.Rotate(randomRotation * Time.deltaTime);
         }
     }
