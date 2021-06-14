@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SDD.Events;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour, IEventHandler
 {
     public float strafeSpeed = 7.5f, hoverSpeed = 5f, forwardspeed = 25f;
     private float activeStrafeSpeed, activeHoverSpeed, activeForwardSpeed;
@@ -17,6 +18,41 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 target;
     private float distance;
     private float i = 0;
+
+
+    public void SubscribeEvents()
+    {
+        EventManager.Instance.AddListener<GamePlayEvent>(GamePlay);
+        EventManager.Instance.AddListener<LevelHasBeenInitializedEvent>(LevelHasBeenInitialized);
+    }
+
+    public void UnsubscribeEvents()
+    {
+        EventManager.Instance.RemoveListener<GamePlayEvent>(GamePlay);
+        EventManager.Instance.RemoveListener<LevelHasBeenInitializedEvent>(LevelHasBeenInitialized);
+    }
+
+    private void OnEnable()
+    {
+        SubscribeEvents();
+    }
+
+    private void OnDisable()
+    {
+        UnsubscribeEvents();
+    }
+
+    #region Events callbacks
+    void GamePlay(GamePlayEvent e)
+    {
+        Debug.Log("event GamePlay received by + " + name);
+    }
+
+    void LevelHasBeenInitialized(LevelHasBeenInitializedEvent e)
+    {
+        transform.position = e.ePlayerSpawnPos;
+    }
+    #endregion
 
     // Start is called before the first frame update
     void Start()
