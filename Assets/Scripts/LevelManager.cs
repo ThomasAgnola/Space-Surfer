@@ -35,7 +35,7 @@ public class LevelManager : MonoBehaviour, IEventHandler
     }
     #endregion
 
-    void DestroyAllBalls()
+    void DestroyAllBAsteroids()
     {
         // destruction des balles
         GameObject[] Asteroid = GameObject.FindGameObjectsWithTag("Asteroids");
@@ -46,7 +46,7 @@ public class LevelManager : MonoBehaviour, IEventHandler
     }
     void Init()
     {
-        DestroyAllBalls();
+        DestroyAllBAsteroids();
         EventManager.Instance.Raise(new LevelHasBeenInitializedEvent() { ePlayerSpawnPos = m_PlayerSpawnPosition.position });
     }
 
