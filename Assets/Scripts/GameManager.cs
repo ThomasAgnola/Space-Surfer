@@ -208,6 +208,10 @@ public class GameManager : MonoBehaviour, IEventHandler
             {
                 EventManager.Instance.Raise(new HighScoreButtonClickedEvent());
             }
+            else if (Input.GetKeyDown(KeyCode.JoystickButton3))
+            {
+                EventManager.Instance.Raise(new CreditButtonClickedEvent());
+            }
 
         }
         else if(IsPaused) //Détection du menu pause
