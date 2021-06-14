@@ -51,7 +51,10 @@ public class GenerateAsteroid : MonoBehaviour
         
 
         Vector3 spawPos = new Vector3(transform.position.x, transform.position.y, asteroidSpawnDistance);
-
+        Vector3 spawPos1 = new Vector3(transform.position.x - 1.5f, transform.position.y, asteroidSpawnDistance);
+        Vector3 spawPos2 = new Vector3(transform.position.x  + 1.5f, transform.position.y, asteroidSpawnDistance);
         Instantiate(asteroidPrefab[Random.Range(0, asteroidPrefab.Length)], spawPos, Quaternion.identity);
+        Instantiate(asteroidPrefab[Random.Range(0, asteroidPrefab.Length)], spawPos1, Quaternion.identity);
+        Instantiate(asteroidPrefab[Random.Range(0, asteroidPrefab.Length)], spawPos2, Quaternion.identity);
     }
 }
