@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour, IEventHandler
 
     public bool IsPlaying { get { return m_State == GAMESTATE.play; } }
     public bool IsPaused { get { return m_State == GAMESTATE.pause; } }
-    public int highScore=0;
+    private int highScore=0;
 
     [SerializeField] int m_ScoreToVictory;
     int m_Score;
