@@ -10,6 +10,7 @@ public class MenuManager : MonoBehaviour, IEventHandler
     [SerializeField] GameObject m_GameOverPanel;
     [SerializeField] GameObject m_HighScorePanel;
     [SerializeField] GameObject m_CreditPanel;
+    [SerializeField] GameObject m_PausePanel;
 
     private List<GameObject> m_AllPanels = new List<GameObject>();
 
@@ -21,6 +22,8 @@ public class MenuManager : MonoBehaviour, IEventHandler
         EventManager.Instance.AddListener<GameOverEvent>(GameOver);
         EventManager.Instance.AddListener<GameHighScoreEvent>(HighScore);
         EventManager.Instance.AddListener<GameCreditEvent>(Credit);
+        EventManager.Instance.AddListener<GamePauseEvent>(Pause);
+        EventManager.Instance.AddListener<GameResumeEvent>(Resume);
     }
 
     public void UnsubscribeEvents()
@@ -31,6 +34,8 @@ public class MenuManager : MonoBehaviour, IEventHandler
         EventManager.Instance.RemoveListener<GameOverEvent>(GameOver);
         EventManager.Instance.RemoveListener<GameHighScoreEvent>(HighScore);
         EventManager.Instance.RemoveListener<GameCreditEvent>(Credit);
+        EventManager.Instance.RemoveListener<GamePauseEvent>(Pause);
+        EventManager.Instance.RemoveListener<GameResumeEvent>(Resume);
     }
     private void OnEnable()
     {
@@ -61,6 +66,10 @@ public class MenuManager : MonoBehaviour, IEventHandler
     {
         DisplayPanel(m_GameOverPanel);
     }
+    void Resume(GameResumeEvent e)
+    {
+        DisplayPanel(null);
+    }
     void HighScore(GameHighScoreEvent e)
     {
         Debug.Log("event HighScore received by + " + name);
@@ -69,6 +78,10 @@ public class MenuManager : MonoBehaviour, IEventHandler
     void Credit(GameCreditEvent e)
     {
         DisplayPanel(m_CreditPanel);
+    }
+    void Pause(GamePauseEvent e)
+    {
+        DisplayPanel(m_PausePanel);
     }
     #endregion
 
@@ -79,6 +92,7 @@ public class MenuManager : MonoBehaviour, IEventHandler
         m_AllPanels.Add(m_GameOverPanel);
         m_AllPanels.Add(m_HighScorePanel);
         m_AllPanels.Add(m_CreditPanel);
+        m_AllPanels.Add(m_PausePanel);
     }
 
     // Start is called before the first frame update

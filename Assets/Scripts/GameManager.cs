@@ -91,7 +91,7 @@ public class GameManager : MonoBehaviour, IEventHandler
     #region Events callbacks
     void PlayButtonClicked(PlayButtonClickedEvent e)
     {
-        Debug.Log("event PlayButtonClicked received by + " + name);
+        //Debug.Log("event PlayButtonClicked received by + " + name);
         m_State = GAMESTATE.play;
 
         InitGame();
@@ -111,10 +111,21 @@ public class GameManager : MonoBehaviour, IEventHandler
 
     void EscapeButtonClicked(EscapeButtonClickedEvent e)
     {
-        m_State = GAMESTATE.menu;
         if (m_State == GAMESTATE.menu)
         {
             Application.Quit();
+        }
+        else if (m_State == GAMESTATE.play)
+        {
+            m_State = GAMESTATE.pause;
+            EventManager.Instance.Raise(new GamePauseEvent());
+            Debug.Log("Pause menu asked");
+        }
+        else if (m_State == GAMESTATE.pause)
+        {
+            m_State = GAMESTATE.play;
+            EventManager.Instance.Raise(new GameResumeEvent());
+            Debug.Log("resume asked");
         }
     }
     void CreditButtonClicked(CreditButtonClickedEvent e)
@@ -179,5 +190,11 @@ public class GameManager : MonoBehaviour, IEventHandler
             }
             
         }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            EventManager.Instance.Raise(new EscapeButtonClickedEvent());
+            Debug.Log("Escape Button received");
+        }
+
     }
 }
