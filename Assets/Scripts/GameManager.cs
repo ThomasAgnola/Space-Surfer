@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using SDD.Events;
 
-public enum GAMESTATE { menu, play, pause, victory, gameover, highscore }
+public enum GAMESTATE { menu, play, pause, victory, gameover, highscore, credit }
 
 public class GameManager : MonoBehaviour, IEventHandler
 {
@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour, IEventHandler
         EventManager.Instance.AddListener<MainMenuButtonClickedEvent>(MainMenuButtonClicked);
         EventManager.Instance.AddListener<HighScoreButtonClickedEvent>(HighScoreButtonClicked);
         EventManager.Instance.AddListener<EscapeButtonClickedEvent>(EscapeButtonClicked);
+        EventManager.Instance.AddListener<CreditButtonClickedEvent>(CreditButtonClicked);
     }
 
     public void UnsubscribeEvents()
@@ -40,6 +41,7 @@ public class GameManager : MonoBehaviour, IEventHandler
         EventManager.Instance.RemoveListener<MainMenuButtonClickedEvent>(MainMenuButtonClicked);
         EventManager.Instance.RemoveListener<HighScoreButtonClickedEvent>(HighScoreButtonClicked);
         EventManager.Instance.RemoveListener<EscapeButtonClickedEvent>(EscapeButtonClicked);
+        EventManager.Instance.RemoveListener<CreditButtonClickedEvent>(CreditButtonClicked);
     }
 
     private void OnEnable()
@@ -114,6 +116,11 @@ public class GameManager : MonoBehaviour, IEventHandler
         {
             Application.Quit();
         }
+    }
+    void CreditButtonClicked(CreditButtonClickedEvent e)
+    {
+        m_State = GAMESTATE.credit;
+        EventManager.Instance.Raise(new GameCreditEvent());
     }
     void BallHitSomething(BallHitSomethingEvent e)
     {

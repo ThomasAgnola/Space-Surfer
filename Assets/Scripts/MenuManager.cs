@@ -9,6 +9,7 @@ public class MenuManager : MonoBehaviour, IEventHandler
     [SerializeField] GameObject m_VictoryPanel;
     [SerializeField] GameObject m_GameOverPanel;
     [SerializeField] GameObject m_HighScorePanel;
+    [SerializeField] GameObject m_CreditPanel;
 
     private List<GameObject> m_AllPanels = new List<GameObject>();
 
@@ -19,6 +20,7 @@ public class MenuManager : MonoBehaviour, IEventHandler
         EventManager.Instance.AddListener<GameVictoryEvent>(GameVictory);
         EventManager.Instance.AddListener<GameOverEvent>(GameOver);
         EventManager.Instance.AddListener<GameHighScoreEvent>(HighScore);
+        EventManager.Instance.AddListener<GameCreditEvent>(Credit);
     }
 
     public void UnsubscribeEvents()
@@ -28,6 +30,7 @@ public class MenuManager : MonoBehaviour, IEventHandler
         EventManager.Instance.RemoveListener<GameVictoryEvent>(GameVictory);
         EventManager.Instance.RemoveListener<GameOverEvent>(GameOver);
         EventManager.Instance.RemoveListener<GameHighScoreEvent>(HighScore);
+        EventManager.Instance.RemoveListener<GameCreditEvent>(Credit);
     }
     private void OnEnable()
     {
@@ -63,6 +66,10 @@ public class MenuManager : MonoBehaviour, IEventHandler
         Debug.Log("event HighScore received by + " + name);
         DisplayPanel(m_HighScorePanel);
     }
+    void Credit(GameCreditEvent e)
+    {
+        DisplayPanel(m_CreditPanel);
+    }
     #endregion
 
     private void Awake()
@@ -71,6 +78,7 @@ public class MenuManager : MonoBehaviour, IEventHandler
         m_AllPanels.Add(m_VictoryPanel);
         m_AllPanels.Add(m_GameOverPanel);
         m_AllPanels.Add(m_HighScorePanel);
+        m_AllPanels.Add(m_CreditPanel);
     }
 
     // Start is called before the first frame update
@@ -108,6 +116,11 @@ public class MenuManager : MonoBehaviour, IEventHandler
     public void EscapeButtonClicked()
     {
         EventManager.Instance.Raise(new EscapeButtonClickedEvent());
+    }
+
+    public void CreditButtonClicked()
+    {
+        EventManager.Instance.Raise(new GameCreditEvent());
     }
     #endregion
 }
