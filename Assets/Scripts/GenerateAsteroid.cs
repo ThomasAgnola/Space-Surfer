@@ -22,7 +22,7 @@ public class GenerateAsteroid : MonoBehaviour
     public GameObject[] asteroidPrefab;
     public float asteroidSpawnDistance = 50f;
 
-    private float spawnTime = 1f;
+    private float spawnTime = 4f;
     private float timer = 0f;
 
     [HideInInspector]
@@ -48,10 +48,9 @@ public class GenerateAsteroid : MonoBehaviour
 
     private void SpawnNewAsteroid()
     {
-        float newX = Random.Range(minX, maxX);
-        float newY = Random.Range(minY, maxY);
+        
 
-        Vector3 spawPos = new Vector3(newX, newY, asteroidSpawnDistance);
+        Vector3 spawPos = new Vector3(transform.position.x, transform.position.y, asteroidSpawnDistance);
 
         Instantiate(asteroidPrefab[Random.Range(0, asteroidPrefab.Length)], spawPos, Quaternion.identity);
     }
