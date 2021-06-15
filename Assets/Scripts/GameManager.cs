@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour, IEventHandler
     private bool IsMenu { get { return m_State == GAMESTATE.menu; } }
     private bool IsHighScore { get { return m_State == GAMESTATE.highscore; } }
     private bool IsCredit { get { return m_State == GAMESTATE.credit; } }
-    private int highScore=0;
+    private int highScore = 0;
 
     [SerializeField] int m_ScoreToVictory;
     int m_Score;
@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour, IEventHandler
 
     public void UnsubscribeEvents()
     {
-        EventManager.Instance.RemoveListener<PlayButtonClickedEvent>(PlayButtonClicked); 
+        EventManager.Instance.RemoveListener<PlayButtonClickedEvent>(PlayButtonClicked);
         EventManager.Instance.RemoveListener<AsteroidExplosionEvent>(AsteroidExplosion);
         EventManager.Instance.RemoveListener<MainMenuButtonClickedEvent>(MainMenuButtonClicked);
         EventManager.Instance.RemoveListener<HighScoreButtonClickedEvent>(HighScoreButtonClicked);
@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviour, IEventHandler
     {
         m_Score = score;
         m_CountDown = countdown;
-        EventManager.Instance.Raise(new GameStatisticsChangedEvent() { eScore = score, eCountDownValue = Mathf.Max(countdown,0) });
+        EventManager.Instance.Raise(new GameStatisticsChangedEvent() { eScore = score, eCountDownValue = Mathf.Max(countdown, 0) });
     }
 
     void InitGame()
@@ -93,7 +93,7 @@ public class GameManager : MonoBehaviour, IEventHandler
             Victory();
         }
 
-        if(m_Score>highScore)
+        if (m_Score > highScore)
         {
             PlayerPrefs.SetInt("highScore", m_Score);
         }
@@ -150,7 +150,7 @@ public class GameManager : MonoBehaviour, IEventHandler
 
     private void Awake()
     {
-        if(m_Instance != null)
+        if (m_Instance != null)
         {
             Destroy(gameObject);
         }
@@ -164,7 +164,7 @@ public class GameManager : MonoBehaviour, IEventHandler
     {
         m_State = GAMESTATE.menu;
         EventManager.Instance.Raise(new GameMenuEvent());
-        if(PlayerPrefs.HasKey("highScore")) //récupération du highscore d'une ancienne partie
+        if (PlayerPrefs.HasKey("highScore")) //récupération du highscore d'une ancienne partie
         {
             highScore = PlayerPrefs.GetInt("highScore");
         }
@@ -179,22 +179,27 @@ public class GameManager : MonoBehaviour, IEventHandler
         {
             SetStatistics(m_Score, m_CountDown - Time.deltaTime);
 
-            if(m_CountDown < 0)
+            if (m_CountDown < 0)
             {
                 GameOver();
             }
 
-            if(asteroids != null)
+            if (asteroids != null)
             {
                 m_Asteroids = asteroids;
-                for (int i =0; i < m_Asteroids.Length; i++)
+                for (int i = 0; i < m_Asteroids.Length; i++)
                 {
                     m_Asteroids[i].transform.position = transform.position - transform.forward;
                 }
             }
-            
+
         }
-        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton7)) 
+        checkInputs();
+}
+
+    void checkInputs()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton7))
         {
             EventManager.Instance.Raise(new EscapeButtonClickedEvent());
         }
@@ -214,7 +219,7 @@ public class GameManager : MonoBehaviour, IEventHandler
             }
 
         }
-        else if(IsPaused) //Détection du menu pause
+        else if (IsPaused) //Détection du menu pause
         {
             if (Input.GetKeyDown(KeyCode.JoystickButton1))
             {
@@ -239,5 +244,6 @@ public class GameManager : MonoBehaviour, IEventHandler
                 EventManager.Instance.Raise(new MainMenuButtonClickedEvent());
             }
         }
-    }
+    } //Gère tous les inputs lié au menu pendant le jeu
+
 }
