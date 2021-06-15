@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SDD.Events;
 
 public class LaserShoot : MonoBehaviour
 {
@@ -10,6 +11,34 @@ public class LaserShoot : MonoBehaviour
     public AudioSource laserSound;
     private float m_NextShootTime;
     [SerializeField] float m_LaserCoolDownDuration;
+
+    public void SubscribeEvents()
+    {
+        EventManager.Instance.AddListener<NewlevelEvent>(NewLevel);
+    }
+
+    public void UnsubscribeEvents()
+    {
+        EventManager.Instance.AddListener<NewlevelEvent>(NewLevel);
+    }
+
+    private void OnEnable()
+    {
+        SubscribeEvents();
+    }
+
+    private void OnDisable()
+    {
+        UnsubscribeEvents();
+    }
+
+    void NewLevel(NewlevelEvent e)
+    {
+        if(m_LaserCoolDownDuration > 0.5)
+        {
+            m_LaserCoolDownDuration -= 0.2f;
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
