@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 1603329507092458279}
   - component: {fileID: 26189962272436147}
   - component: {fileID: 1557392129736820822}
-  - component: {fileID: 4014211438157037839}
   m_Layer: 0
   m_Name: Rock3
   m_TagString: Asteroids
@@ -112,7 +111,7 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: -8892367932362222593, guid: 6f7c05417394dbb40bc26334c0385aff, type: 3}
 --- !u!114 &26189962272436147
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,16 +142,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 6
   m_CollisionDetection: 0
---- !u!114 &4014211438157037839
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1797448692007430590}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c445c8ab3edbdef41a01869f4957f806, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  impactSound: {fileID: 0}

@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 7967100034057749305}
   - component: {fileID: -2450407982766872763}
   - component: {fileID: -13805871610788590}
-  - component: {fileID: -930434419902735805}
   m_Layer: 0
   m_Name: Rock4
   m_TagString: Asteroids
@@ -112,7 +111,7 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30
-  m_Mesh: {fileID: 7029217267309058765, guid: 9d899b1a224ab7c4b860895eaa015a52, type: 3}
+  m_Mesh: {fileID: -8892367932362222593, guid: 6f7c05417394dbb40bc26334c0385aff, type: 3}
 --- !u!114 &-2450407982766872763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,16 +142,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 6
   m_CollisionDetection: 0
---- !u!114 &-930434419902735805
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5088785953716078452}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c445c8ab3edbdef41a01869f4957f806, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  impactSound: {fileID: 0}
