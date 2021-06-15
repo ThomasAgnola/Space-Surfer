@@ -6,11 +6,11 @@ public class AudioRockHit : MonoBehaviour
 {
     public AudioSource impactSound;
 
-    private void OnTriggerEnter(Collider collision)
+    private void OnCollisionEnter(Collision collision)
     {
-        if(collision.name=="SingleLine-LightSaber")
+        if(collision.gameObject.CompareTag("laser"))
         {impactSound.Play();
-         Destroy(GetComponent<SphereCollider>(), 0);
+         
 
         }
         

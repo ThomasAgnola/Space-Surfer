@@ -7,6 +7,7 @@ public class Fracture : MonoBehaviour
 {
     [Tooltip("\"Fractured\" is the object that this will break into")]
     public GameObject fractured;
+    public AudioSource impactSound;
 
     private void OnCollisionEnter(Collision collision)
     {   if(collision.gameObject.CompareTag("laser"))
@@ -17,9 +18,10 @@ public class Fracture : MonoBehaviour
             Destroy(collision.gameObject); //Destroy the laser
             asteroid.AddComponent<SphereCollider>(); //add a spherecollider to trigger an explosion
             Destroy(asteroid.GetComponent<SphereCollider>(), 0.5f); //destroy the spherecollider just after
+            impactSound.Play();
             Destroy(asteroid, 6); //destroy the asteroid after 6 sec
             
-            
+
         }
         else if(collision.gameObject.CompareTag("spaceship"))
         {
@@ -27,6 +29,7 @@ public class Fracture : MonoBehaviour
             Destroy(gameObject);
             asteroid.AddComponent<SphereCollider>();
             Destroy(asteroid.GetComponent<SphereCollider>(), 0.5f);
+            impactSound.Play();
             Destroy(asteroid, 6);
             EventManager.Instance.Raise(new GameOverEvent());
 
