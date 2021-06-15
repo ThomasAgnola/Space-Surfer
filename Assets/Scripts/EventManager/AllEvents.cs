@@ -31,6 +31,9 @@ public class GameCreditEvent : SDD.Events.Event
 public class NewlevelEvent : SDD.Events.Event
 {
 }
+public class AsteroidDestroyedEvent : SDD.Events.Event
+{
+}
 #endregion
 
 #region MenuManager Events
