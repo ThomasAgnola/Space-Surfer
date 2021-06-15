@@ -42,7 +42,7 @@ public class PlayerMovement : MonoBehaviour, IEventHandler
     #region Events callbacks
     void GamePlay(GamePlayEvent e)
     {
-        Debug.Log("event GamePlay received by + " + name);
+        //Debug.Log("event GamePlay received by + " + name);
     }
 
     void LevelHasBeenInitialized(LevelHasBeenInitializedEvent e)
@@ -127,7 +127,6 @@ public class PlayerMovement : MonoBehaviour, IEventHandler
                     IsRight = true;
                     IsCenter = false;
                     Movement();
-                    Debug.Log("Déplacement à droite init");
                 }
                 if (IsLeft)
                 {
@@ -144,7 +143,6 @@ public class PlayerMovement : MonoBehaviour, IEventHandler
                     IsLeft = true;
                     IsCenter = false;
                     Movement();
-                    Debug.Log("Déplacement à gauche init");
                 }
                 if (IsRight)
                 {
@@ -159,7 +157,6 @@ public class PlayerMovement : MonoBehaviour, IEventHandler
 
     void Movement()
     {
-        Debug.Log("Déplacement");
         if (IsRight)
         {
             target = Right_Ship_Position.transform.localPosition; // should return gameobject.x pos but return the player.x pos
@@ -176,26 +173,24 @@ public class PlayerMovement : MonoBehaviour, IEventHandler
             IsMoving = true;
         }
         float step = speed * Time.deltaTime; // calculate distance to move
-        transform.localPosition = Vector3.MoveTowards(transform.localPosition, target, step);
+
+        transform.localPosition = Vector3.MoveTowards(transform.localPosition, target, step); //move ship 
         CheckDistance();
         if (i < 15 && RotationDone == false)
         {
             rotateship();
             i += 1;
-            Debug.Log("rotation deg : " + i);
         }
         else if (i >= 15)
         {
             rotateship();
             i -= 1;
             RotationDone = true;
-            Debug.Log("RotationDone est passé à true");
         }
         else if (i > 0 && RotationDone == true)
         {
             rotateship();
             i -= 1;
-            Debug.Log("rotation deg : " + i);
         }
         // Check if the position is approximately equal to the target.
         if (distance <= 0.01f)
@@ -212,9 +207,6 @@ public class PlayerMovement : MonoBehaviour, IEventHandler
     void CheckDistance()
     {
         distance = Vector3.Distance(transform.localPosition, target);
-        //float ma_distance = transform.localPosition.x - target.x;
-        //Debug.Log("ship x : " + transform.localPosition.x + " target x : " + target.x);
-        //Debug.Log("Distance : " + distance + " Ma distance : "+ma_distance);
     }
 
     void rotateship()
