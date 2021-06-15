@@ -195,7 +195,7 @@ public class GameManager : MonoBehaviour, IEventHandler
 
         }
         checkInputs();
-}
+    }
 
     void checkInputs()
     {
