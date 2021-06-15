@@ -125,6 +125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 800
+  TimeBetweenLevels: 10
 --- !u!54 &2972120237067466700
 Rigidbody:
   m_ObjectHideFlags: 0

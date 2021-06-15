@@ -181,7 +181,7 @@ public class GameManager : MonoBehaviour, IEventHandler
 
             if (m_CountDown < 0)
             {
-                GameOver();
+                Victory();
             }
 
             if (asteroids != null)

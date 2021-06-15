@@ -7,6 +7,8 @@ public class AsteroidController : MonoBehaviour
     public float moveSpeed = 20f;
     private Rigidbody rb;
     private Vector3 randomRotation;
+    [SerializeField] float TimeBetweenLevels;
+    private float PlayingTime;
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +20,13 @@ public class AsteroidController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        PlayingTime += Time.deltaTime;
+        if (TimeBetweenLevels < PlayingTime)
+        {
+            moveSpeed += 5f;
+            TimeBetweenLevels += PlayingTime;
+        }
+
         if (!GameManager.Instance.IsPlaying)
         {
             Vector3 movementVector = new Vector3(0f, 0f, 0f);
@@ -30,6 +39,7 @@ public class AsteroidController : MonoBehaviour
             rb.velocity = movementVector;
             transform.Rotate(randomRotation * Time.deltaTime);
         }
+
     }
 
     public void DestroyAsteroid()

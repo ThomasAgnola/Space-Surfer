@@ -23,8 +23,8 @@ public class GenerateAsteroid : MonoBehaviour
     public GameObject[] asteroidPrefab;
     public float asteroidSpawnDistance = 50f;
 
-    private float maxSpawnTime = 8f;
-    private float minSpawnTime = 3f;
+    private float maxSpawnTime = 15f;
+    private float minSpawnTime = 5f;
     private float timer = 0f;
     private float timer1 = 0f;
     private float timer2 = 0f;
@@ -54,6 +54,8 @@ public class GenerateAsteroid : MonoBehaviour
         PlayingTime += Time.deltaTime;
         if (TimeBetweenLevels < PlayingTime)
         {
+            maxSpawnTime *= 0.8f;
+            minSpawnTime *= 0.8f;
             //augmente la fréquence d'apparition des astéroids
             EventManager.Instance.Raise(new NewlevelEvent());
             TimeBetweenLevels += PlayingTime;
