@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour, IEventHandler
     private bool IsCredit { get { return m_State == GAMESTATE.credit; } }
     private int highScore = 0;
 
-    [SerializeField] int m_ScoreToVictory;
+
     int m_Score;
 
     [SerializeField] float m_CountDownStartValue;
@@ -87,11 +87,6 @@ public class GameManager : MonoBehaviour, IEventHandler
     {
         m_Score += scoreIncrement;
         SetStatistics(m_Score, m_CountDown);
-
-        if (m_Score >= m_ScoreToVictory)
-        {
-            Victory();
-        }
 
         if (m_Score > highScore)
         {
