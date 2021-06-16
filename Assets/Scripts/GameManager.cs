@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour, IEventHandler
         EventManager.Instance.AddListener<HighScoreButtonClickedEvent>(HighScoreButtonClicked);
         EventManager.Instance.AddListener<EscapeButtonClickedEvent>(EscapeButtonClicked);
         EventManager.Instance.AddListener<CreditButtonClickedEvent>(CreditButtonClicked);
+        EventManager.Instance.AddListener<GameOverEvent>(GameOver);
 
     }
 
@@ -48,6 +49,7 @@ public class GameManager : MonoBehaviour, IEventHandler
         EventManager.Instance.RemoveListener<HighScoreButtonClickedEvent>(HighScoreButtonClicked);
         EventManager.Instance.RemoveListener<EscapeButtonClickedEvent>(EscapeButtonClicked);
         EventManager.Instance.RemoveListener<CreditButtonClickedEvent>(CreditButtonClicked);
+        EventManager.Instance.RemoveListener<GameOverEvent>(GameOver);
     }
 
     private void OnEnable()
@@ -77,7 +79,7 @@ public class GameManager : MonoBehaviour, IEventHandler
         m_State = GAMESTATE.victory;
         EventManager.Instance.Raise(new GameVictoryEvent());
     }
-    void GameOver()
+    void GameOver(GameOverEvent e)
     {
         m_State = GAMESTATE.gameover;
         EventManager.Instance.Raise(new GameOverEvent());
