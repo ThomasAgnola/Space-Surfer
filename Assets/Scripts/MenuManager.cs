@@ -70,7 +70,6 @@ public class MenuManager : MonoBehaviour, IEventHandler
     }
     void HighScore(GameHighScoreEvent e)
     {
-        //Debug.Log("event HighScore received by + " + name);
         DisplayPanel(m_HighScorePanel);
     }
     void Credit(GameCreditEvent e)

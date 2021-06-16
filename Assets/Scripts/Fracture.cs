@@ -22,7 +22,7 @@ public class Fracture : MonoBehaviour
             
 
         }
-        else if(collision.gameObject.CompareTag("spaceship"))
+        else if(collision.gameObject.CompareTag("spaceship") && GameManager.Instance.IsPlaying)
         {
             GameObject asteroid = Instantiate(fractured, transform.position, transform.rotation);
             Destroy(gameObject);

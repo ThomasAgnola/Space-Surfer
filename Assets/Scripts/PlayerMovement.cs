@@ -42,7 +42,6 @@ public class PlayerMovement : MonoBehaviour, IEventHandler
     #region Events callbacks
     void GamePlay(GamePlayEvent e)
     {
-        //Debug.Log("event GamePlay received by + " + name);
     }
 
     void LevelHasBeenInitialized(LevelHasBeenInitializedEvent e)
