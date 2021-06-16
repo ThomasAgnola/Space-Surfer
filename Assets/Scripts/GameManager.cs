@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour, IEventHandler
     public static GameManager Instance { get { return m_Instance; } }
 
     public AudioSource gameOverSound;
+    public AudioSource victorySound;
 
     private GAMESTATE m_State;
 
@@ -79,6 +80,7 @@ public class GameManager : MonoBehaviour, IEventHandler
     void Victory()
     {
         m_State = GAMESTATE.victory;
+        victorySound.Play();
         EventManager.Instance.Raise(new GameVictoryEvent());
     }
     void GameOver(GameOverEvent e)

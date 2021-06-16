@@ -124,8 +124,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6430b35765a0aff4ca6d55bfac2d67cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2000
-  TimeBetweenLevels: 0
+  moveSpeed: 800
+  TimeBetweenLevels: 60
 --- !u!54 &-13805871610788590
 Rigidbody:
   m_ObjectHideFlags: 0
