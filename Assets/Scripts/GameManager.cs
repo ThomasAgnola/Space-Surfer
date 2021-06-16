@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour, IEventHandler
 
     public static GameManager Instance { get { return m_Instance; } }
 
+    public AudioSource gameOverSound;
+
     private GAMESTATE m_State;
 
     public bool IsPlaying { get { return m_State == GAMESTATE.play; } }
@@ -82,6 +84,7 @@ public class GameManager : MonoBehaviour, IEventHandler
     void GameOver(GameOverEvent e)
     {
         m_State = GAMESTATE.gameover;
+        gameOverSound.Play();
     }
 
     void IncrementScore(int scoreIncrement)
