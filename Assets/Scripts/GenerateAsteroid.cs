@@ -35,6 +35,7 @@ public class GenerateAsteroid : MonoBehaviour
     [SerializeField] float TimeBetweenLevels;
 
     private float PlayingTime;
+    private float baseTimeLevels;
 
     // Start is called before the first frame update
     void Start()
@@ -45,6 +46,7 @@ public class GenerateAsteroid : MonoBehaviour
         sauvSpawnTime = Random.Range(minSpawnTime, maxSpawnTime);
         sauvSpawnTime1 = Random.Range(minSpawnTime, maxSpawnTime);
         sauvSpawnTime2 = Random.Range(minSpawnTime, maxSpawnTime);
+        baseTimeLevels = TimeBetweenLevels;
     }
 
     // Update is called once per frame
@@ -58,7 +60,7 @@ public class GenerateAsteroid : MonoBehaviour
             minSpawnTime *= 0.8f;
             //augmente la fréquence d'apparition des astéroids
             EventManager.Instance.Raise(new NewlevelEvent());
-            TimeBetweenLevels += PlayingTime;
+            TimeBetweenLevels += baseTimeLevels;
         }
         timer += Time.deltaTime;
         timer1 += Time.deltaTime;
