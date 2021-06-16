@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Space Surfer.unity
+    guid: 0cb301c28b649d24590ad060aaa6b520
   m_configObjects: {}
