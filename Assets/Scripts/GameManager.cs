@@ -82,7 +82,6 @@ public class GameManager : MonoBehaviour, IEventHandler
     void GameOver(GameOverEvent e)
     {
         m_State = GAMESTATE.gameover;
-        EventManager.Instance.Raise(new GameOverEvent());
     }
 
     void IncrementScore(int scoreIncrement)
