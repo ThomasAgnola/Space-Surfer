@@ -17,8 +17,8 @@ public class Fracture : MonoBehaviour
             Destroy(collision.gameObject); //Destroy the laser
             asteroid.AddComponent<SphereCollider>(); //add a spherecollider to trigger an explosion
             Destroy(asteroid.GetComponent<SphereCollider>(), 0.5f); //destroy the spherecollider just after
-            Destroy(asteroid, 12); //destroy the asteroid after 20 sec
             EventManager.Instance.Raise(new AsteroidDestroyedEvent());
+            Destroy(asteroid, 12); //destroy the asteroid after 20 sec
             
 
         }
